@@ -1,0 +1,72 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    color: #999;
+    font: 100%/18px helvetica, arial, sans-serif;
+}
+
+a {
+    color: #2fa1d6;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #fff;
+}
+
+#canvas-container {
+    width: 100%;
+    height: 100%;
+}
+
+#canvas-container>canvas {
+    /* cursor: crosshair; */
+    display: block;
+    position: relative;
+    z-index: 3;
+}
+
+#center-block {
+    background: black;
+    position: absolute;
+    margin: 0 auto;
+    top: 15%;
+    left: 0;
+    right: 0;
+    padding-left: 20%;
+    padding-right: 20%;
+    color: red;
+    text-align: center;
+    font-size: 40px;
+    z-index:-1;
+    line-height: 1em;
+    word-wrap: break-word;
+    background-image: -webkit-linear-gradient(left, blue, #66ffff 10%, #cc00ff 20%, #CC00CC 30%, #CCCCFF 40%, #00FFFF 50%, #CCCCFF 60%, #CC00CC 70%, #CC00FF 80%, #66FFFF 90%, blue 100%);
+    -webkit-text-fill-color: transparent;
+    /* 将字体设置成透明色 */
+    -webkit-background-clip: text;
+    /* 裁剪背景图，使文字作为裁剪区域向外裁剪 */
+    -webkit-background-size: 200% 100%;
+    -webkit-animation: masked-animation 4s linear infinite;
+}
+
+@keyframes masked-animation {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: -100% 0;
+    }
+}
+
+
+/* canvas:active {
+	cursor: crosshair;
+} */

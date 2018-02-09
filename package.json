@@ -1,0 +1,34 @@
+{
+  "name": "FireworksCool",
+  "version": "0.0.1",
+  "description": "A cool desktop animation effect USES Electron.",
+  "main": "index.js",
+  "bin": {
+    "FireworksCool": "./index.js"
+  },
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node index",
+    "dev": "cross-env NODE_ENV=development node index",
+    "text": "node index --text=HelloWorld",
+    "clear": "node index --clear",
+    "delete": "node index --delete=1",
+    "list": "node index --list"
+  },
+  "keywords": [
+    "Electron",
+    "fireworks",
+    "demo"
+  ],
+  "author": "KaiOrange",
+  "license": "MIT",
+  "devDependencies": {
+    "cross-env": "^5.1.3",
+    "electron": "~1.7.8",
+    "mousetrap": "^1.6.1",
+    "shelljs": "^0.8.1"
+  },
+  "dependencies": {
+    "config-lite": "^2.1.0",
+    "yargs": "^11.0.0"
+  }
+}
