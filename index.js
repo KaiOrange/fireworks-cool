@@ -1,5 +1,6 @@
-var shell = require("shelljs");
+#!/usr/bin/env node
 var configOp = require("./lib/configOp.js");
+var path = require('path')
 var argv = require('yargs')
     .option('t', {
         alias: 'text',
@@ -69,10 +70,22 @@ if (!!argv.ls) {//列表
     isRun = false;
 } 
 if (isRun) {
-    var execStr = "electron main.js";
-    if (process.env.NODE_ENV === "development") {
-        execStr = "cross-env NODE_ENV=development electron main.js --debug=5858";
+
+    //使用子进程调用electron
+    var electron = require('./node_modules/electron')
+    var proc = require('child_process')
+    var fs = require('fs')
+    var pathFile = path.join(__dirname, 'path.txt')
+
+    var execArgs = [fs.readFileSync(pathFile, 'utf-8')];
+
+    if (process.env.NODE_ENV === "development") {//开发模式的时候
+        execArgs.push("--debug=5858");
     }
-    
-    shell.exec(execStr);
+
+    var child = proc.spawn(electron, execArgs, { stdio: 'inherit' })
+    child.on('close', function (code) {
+        process.exit(code)
+    })
+
 }
