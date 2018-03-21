@@ -45,7 +45,7 @@ a:hover {
     color: red;
     text-align: center;
     font-size: 40px;
-    z-index:-1;
+    z-index: -1;
     line-height: 1em;
     word-wrap: break-word;
     background-image: -webkit-linear-gradient(left, blue, #66ffff 10%, #cc00ff 20%, #CC00CC 30%, #CCCCFF 40%, #00FFFF 50%, #CCCCFF 60%, #CC00CC 70%, #CC00FF 80%, #66FFFF 90%, blue 100%);
@@ -67,6 +67,34 @@ a:hover {
 }
 
 
-/* canvas:active {
-	cursor: crosshair;
-} */
+/*隐藏模式*/
+
+html.hidden-mode canvas {
+    cursor: crosshair;
+}
+
+.buttons {
+    display: none;
+    position: fixed;
+    right: 40px;
+    top: 12%;
+    margin: auto;
+    text-align: center;
+    z-index: 10;
+}
+
+html.hidden-mode buttons {
+    display: block;
+}
+
+button {
+    background: #FFCD00;
+    border: 0;
+    color: #B57700;
+    padding: 15px;
+    min-width: 60px;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px;
+    cursor: pointer;
+}

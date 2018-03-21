@@ -19,7 +19,7 @@ function createWindow () {
   // Create the browser window.
   mainWindow = new BrowserWindow({ fullscreen: true, transparent: true, frame: false, alwaysOnTop :true})
 
-  mainWindow.setIgnoreMouseEvents(true)
+  mainWindow.setIgnoreMouseEvents(true);
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({
     pathname: path.join(__dirname, './src/index.html'),
@@ -68,5 +68,10 @@ app.on('activate', function () {
 // code. You can also put them in separate files and require them here.
 ipcMain.on('app-quit', function (event, arg) {
   app.quit();
+})
+ipcMain.on('goto-hidden-mode', function (event, arg) {
+  if (!!mainWindow) {
+    mainWindow.setIgnoreMouseEvents(false);
+  }
 })
 require('./renderer.js');

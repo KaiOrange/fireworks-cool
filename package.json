@@ -1,7 +1,7 @@
 {
   "name": "fireworks-cool",
   "version": "0.0.1",
-  "description": "A cool desktop animation effect USES Electron.",
+  "description": "使用electron的一个烟花小程序。",
   "main": "index.js",
   "bin": {
     "fireworks-cool": "index.js"

@@ -326,26 +326,27 @@ var Fireworks = function(){
 			}, 100);
 		});
 		
-		// $(self.canvas).on('mousedown', function(e){
-		// 	var randLaunch = rand(0, 5);
-		// 	self.mx = e.pageX - self.canvasContainer.offset().left;
-		// 	self.my = e.pageY - self.canvasContainer.offset().top;
-		// 	self.currentHue = rand(self.hueMin, self.hueMax);
-		// 	self.createFireworks(self.cw/2, self.ch, self.mx, self.my);	
-			
-		// 	$(self.canvas).on('mousemove.fireworks', function(e){
-		// 		var randLaunch = rand(0, 5);
-		// 		self.mx = e.pageX - self.canvasContainer.offset().left;
-		// 		self.my = e.pageY - self.canvasContainer.offset().top;
-		// 		self.currentHue = rand(self.hueMin, self.hueMax);
-		// 		self.createFireworks(self.cw/2, self.ch, self.mx, self.my);									
-		// 	});	
-			
-		// });
+		$(self.canvas).on('mousedown', function(e){
+			if (isHiddenMode()) {
+				var randLaunch = rand(0, 5);
+				self.mx = e.pageX - self.canvasContainer.offset().left;
+				self.my = e.pageY - self.canvasContainer.offset().top;
+				self.currentHue = rand(self.hueMin, self.hueMax);
+				self.createFireworks(self.cw / 2, self.ch, self.mx, self.my);
+
+				$(self.canvas).on('mousemove.fireworks', function (e) {
+					var randLaunch = rand(0, 5);
+					self.mx = e.pageX - self.canvasContainer.offset().left;
+					self.my = e.pageY - self.canvasContainer.offset().top;
+					self.currentHue = rand(self.hueMin, self.hueMax);
+					self.createFireworks(self.cw / 2, self.ch, self.mx, self.my);
+				});		
+			}
+		});
 		
-		// $(self.canvas).on('mouseup', function(e){
-		// 	$(self.canvas).off('mousemove.fireworks');									
-		// });
+		$(self.canvas).on('mouseup', function(e){
+			$(self.canvas).off('mousemove.fireworks');									
+		});
 					
 	}
 	
@@ -579,16 +580,30 @@ ipc.on('get-text-reply', function (event, arg) {
 		$("#center-block").text(arg).fadeIn("fast");
 		setTimeout(function () {
 			$("#center-block").fadeOut("fast", () => {
-				ipc.send('app-quit');
+				if (!isHiddenMode()) {//如果这个时候还没有进入隐藏模式的话 那么就退出程序
+					ipc.send('app-quit');
+				}
 			});
 		}, 3000);
 	}, 3000);
 })
 
+
+function isHiddenMode(){
+	return $("html").hasClass("hidden-mode"); 
+}
+
 var Mousetrap = require('mousetrap');
 var bindMousetrapEvent = function (){
-	// alert(123);
+	$("html").addClass("hidden-mode");
+	ipc.send('goto-hidden-mode');
+	$("#buttons").fadeIn();
 }
+$("#buttons>button:first").click(function (){
+	$("#buttons").fadeOut("fast",function (){
+		ipc.send('app-quit');
+	});
+});
 Mousetrap.bind('w w s s a a d d j k j k', bindMousetrapEvent);
 Mousetrap.bind('up up down down left left right right 1 2 1 2', bindMousetrapEvent);
 Mousetrap.bind('up up down down left left right right b a b a', bindMousetrapEvent);

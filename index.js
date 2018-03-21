@@ -23,6 +23,11 @@ var argv = require('yargs')
         demand: false,
         type: 'number',
         describe: '删除第几个,从1开始',
+    }).option('u', {
+        alias: 'use',
+        demand: false,
+        type: 'number',
+        describe: '是用列表中的第几个文字',
     })
     .argv;
 
@@ -33,14 +38,16 @@ if (!!argv.c) {//清空参数
     console.log("文本已清除!\n");  
     isRun = false;
 } 
-if (!!argv.d) {
+if (!!argv.d || argv.d === 0) {
     configOp.readConfig((obj)=>{
         let deleteIndex = parseInt(argv.d);
         if (!!obj.texts && obj.texts.length >= deleteIndex && deleteIndex > 0) {
             obj.texts.splice(deleteIndex-1,1);
             configOp.writeConfig(JSON.stringify(obj));
+            console.log("删除文本成功!"); 
+        } else {
+            console.log("删除参数必须大于0小于等于所有文本个数" + obj.texts.length); 
         }
-        console.log("删除文本成功!\n"); 
     });
     isRun = false;
 }
@@ -51,7 +58,7 @@ if (!!argv.t) {
             obj.texts.unshift(text);
             configOp.writeConfig(JSON.stringify(obj));
         }
-        console.log("设置文本成功!\n"); 
+        console.log("设置文本成功!"); 
     });
     isRun = false;
 }
@@ -65,17 +72,31 @@ if (!!argv.ls) {//列表
                 console.log(index + 1, text)
             });
         }
-        console.log();
     });
     isRun = false;
 } 
-if (isRun) {
+if (!!argv.u || argv.u === 0) {//列表
+    configOp.readConfig((obj) => {
+        let useIndex = argv.u;
+        let length = (obj.texts || []).length;
+        if (useIndex < 1 || useIndex > length) {
+            console.log("参数必须大于1小于等于总条数" + length);
+        } else {
+            let texts = obj.texts.splice(useIndex - 1,1);
+            obj.texts.unshift(texts[0]);
+            configOp.writeConfig(JSON.stringify(obj));
+            console.log("文本设置为：" + texts[0]);
+        }
+    });
+    isRun = false;
+} 
 
+if (isRun) {
     //使用子进程调用electron
     var electron = require('./node_modules/electron')
     var proc = require('child_process')
     var fs = require('fs')
-    var pathFile = path.join(__dirname, 'path.txt')
+    var pathFile = path.join(__dirname, "config",'path.txt')
 
     var execArgs = [fs.readFileSync(pathFile, 'utf-8')];
 
@@ -87,5 +108,4 @@ if (isRun) {
     child.on('close', function (code) {
         process.exit(code)
     })
-
 }
