@@ -5,7 +5,7 @@
 ## 使用 🐌
 1. 确保你的系统上拥有`NodeJS`和`electron`，如果没有`electron`请执行下面的命令安装该依赖包.
 ```sh
-npm install -g electron
+npm install -g electron@1.8.3
 ```
 
 2. 下载该全局包.
