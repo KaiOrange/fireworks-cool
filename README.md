@@ -3,9 +3,9 @@
 
 
 ## 使用 🐌
-1. 确保你的系统上拥有`NodeJS`和`electron`，如果没有`electron`请执行下面的命令安装该依赖包.
+1. 确保你的系统上拥有`NodeJS`和`electron`，如果没有`electron`请执行下面的命令安装该依赖包（这个过程可能会比较耗时）.
 ```sh
-npm install -g electron@1.8.3
+npm install -g electron
 ```
 
 2. 下载该全局包.
@@ -48,4 +48,4 @@ fireworks-cool --use=5
 ```sh
 fireworks-cool --clear
 ```
-> 在你快要出生的时候，输入：上上下下左右左右BABA，这样你一出生就有很多条命还有一份超棒的工作。
+> 注：在你快要出生的时候，输入：上上下下左右左右BABA，这样你一出生就有很多条命还有一份超棒的工作。

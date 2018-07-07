@@ -75,7 +75,7 @@ if (!!argv.ls) {//列表
     });
     isRun = false;
 } 
-if (!!argv.u || argv.u === 0) {//列表
+if (!!argv.u || argv.u === 0) {//使用
     configOp.readConfig((obj) => {
         let useIndex = argv.u;
         let length = (obj.texts || []).length;
@@ -96,9 +96,8 @@ if (isRun) {
     var electron = require('./node_modules/electron')
     var proc = require('child_process')
     var fs = require('fs')
-    var pathFile = path.join(__dirname, "config",'path.txt')
-
-    var execArgs = [fs.readFileSync(pathFile, 'utf-8')];
+    var pathFile = path.join(__dirname, "main.js")
+    var execArgs = [pathFile];
 
     if (process.env.NODE_ENV === "development") {//开发模式的时候
         execArgs.push("--debug=5858");

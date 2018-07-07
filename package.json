@@ -1,8 +1,8 @@
 {
   "name": "fireworks-cool",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "使用electron的一个烟花小程序。",
-  "main": "index.js",
+  "main": "main.js",
   "bin": {
     "fireworks-cool": "index.js"
   },
@@ -15,7 +15,8 @@
     "text": "node index --text=HelloWorld",
     "clear": "node index --clear",
     "delete": "node index --delete=1",
-    "list": "node index --list"
+    "list": "node index --list",
+    "buildWin": "electron-packager . fireworks-cool --platform=win32 --arch=x64 --out=./build --asar --ignore=\"(dist|.vscode|.gitignore|.npmignore|README.md|node_modules)\""
   },
   "keywords": [
     "Electron",
@@ -25,7 +26,8 @@
   "author": "KaiOrange",
   "license": "MIT",
   "devDependencies": {
-    "cross-env": "^5.1.3"
+    "cross-env": "^5.1.3",
+    "electron-packager": "^12.1.0"
   },
   "dependencies": {
     "electron": "^1.8.3",
