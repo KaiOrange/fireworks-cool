@@ -1,4 +1,4 @@
-var noUiSlider = require('nouislider');
+const noUiSlider = require('nouislider');
 
 var SettingFloater = (function (){
     var SettingFloaterConfig = {
@@ -192,5 +192,5 @@ var SettingFloater = (function (){
     return {init:init};
 })();
 
-
+module.exports = SettingFloater;
 

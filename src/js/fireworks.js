@@ -1,4 +1,6 @@
 
+const Utils = require('./utils.js');
+
 var Fireworks = function(){
 	/*=============================================================================*/	
 	/* Utility
@@ -326,7 +328,7 @@ var Fireworks = function(){
 		});
 		
 		$(self.canvas).on('mousedown', function(e){
-			if (isHiddenMode()) {
+			if (Utils.isHiddenMode()) {
 				var randLaunch = rand(0, 5);
 				self.mx = e.pageX - self.canvasContainer.offset().left;
 				self.my = e.pageY - self.canvasContainer.offset().top;
@@ -392,8 +394,10 @@ var Fireworks = function(){
 			var firework = new Firework(self.cw / 2, self.ch, rand(50, self.cw - 50), rand(50, self.ch / 2) - 50);
 			firework.hue = rand(self.hueMin, self.hueMax);
 			self.fireworks.push(firework);
-		  }, initialLaunchCount * 200);
+		  }, initialLaunchCount * 250);
 	  }
   };
 	
 }
+
+module.exports = Fireworks;

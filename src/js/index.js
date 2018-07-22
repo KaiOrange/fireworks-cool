@@ -1,5 +1,14 @@
 
 const ipc = require('electron').ipcRenderer;
+require('../css/reset.css');
+require('../../node_modules/nouislider/distribute/nouislider.min.css');
+require('../css/style.css');
+require('./prefixfree.min.js');
+
+const SettingFloater = require('./setting-floater.js');
+const Fireworks = require('./fireworks.js');
+const Utils = require('./utils.js');
+
 
 function debounce(fn, delay) {
 	// 维护一个 timer
@@ -155,7 +164,7 @@ ipc.on('get-text-reply', function (event, arg) {
 	setTimeout(function () {
 		$("#center-block").text(text).fadeIn("fast");
 		setTimeout(function () {
-			if (!isHiddenMode()) {//如果这个时候还没有进入隐藏模式的话 那么就退出程序
+			if (!Utils.isHiddenMode()) {//如果这个时候还没有进入隐藏模式的话 那么就退出程序
 				$("#center-block").fadeOut("fast", () => {
 					ipc.send('app-quit');
 				});
@@ -203,10 +212,6 @@ ipc.on('get-text-reply', function (event, arg) {
 	SettingFloater.init(guiPresets,{settings:currentObj,preset:preset,text:!!arg.texts?(arg.texts[0]||""):""},eventCallBack);//初始化settingFloater
 	fworks.autoFires();
 })
-
-function isHiddenMode(){
-	return $("html").hasClass("hidden-mode"); 
-}
 
 var Mousetrap = require('mousetrap');
 var bindMousetrapEvent = function (){

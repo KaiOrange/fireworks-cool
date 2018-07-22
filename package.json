@@ -1,6 +1,6 @@
 {
   "name": "fireworks-cool",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "使用electron的一个烟花小程序。",
   "main": "main.js",
   "bin": {
@@ -11,12 +11,14 @@
   },
   "scripts": {
     "start": "cross-env NODE_ENV=production node index",
-    "dev": "cross-env NODE_ENV=development node index",
     "text": "node index --text=HelloWorld",
     "clear": "node index --clear",
     "delete": "node index --delete=1",
     "list": "node index --list",
-    "buildWin": "electron-packager . fireworks-cool --platform=win32 --arch=x64 --out=./build --asar --ignore=\"(dist|.vscode|.gitignore|.npmignore|README.md|node_modules)\""
+
+    "dev": "npm run build && cross-env NODE_ENV=development node index",
+    "build": "webpack",
+    "buildWin": "npm run build && rimraf ./build && electron-packager . fireworks-cool --platform=win32 --arch=x64 --out=./build --asar --ignore=\"(.vscode|.gitignore|.npmignore|README.md|node_modules)\""
   },
   "keywords": [
     "Electron",
@@ -27,10 +29,16 @@
   "license": "MIT",
   "devDependencies": {
     "cross-env": "^5.1.3",
-    "electron-packager": "^12.1.0"
+    "css-loader": "^1.0.0",
+    "electron-packager": "^12.1.0",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.16.1",
+    "webpack-cli": "^3.1.0",
+    "webpack-target-electron-renderer": "^0.4.0"
   },
   "dependencies": {
     "electron": "^1.8.3",
+    "jquery": "^3.3.1",
     "mousetrap": "^1.6.1",
     "nouislider": "^11.1.0",
     "yargs": "^11.0.0"
