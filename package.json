@@ -32,6 +32,7 @@
   "dependencies": {
     "electron": "^1.8.3",
     "mousetrap": "^1.6.1",
+    "nouislider": "^11.1.0",
     "yargs": "^11.0.0"
   }
 }

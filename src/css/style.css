@@ -6,6 +6,10 @@ body {
     height: 100%;
 }
 
+*{
+    box-sizing: border-box;
+}
+
 body {
     color: #999;
     font: 100%/18px helvetica, arial, sans-serif;
@@ -53,8 +57,8 @@ a:hover {
     /* 将字体设置成透明色 */
     -webkit-background-clip: text;
     /* 裁剪背景图，使文字作为裁剪区域向外裁剪 */
-    -webkit-background-size: 200% 100%;
-    -webkit-animation: masked-animation 4s linear infinite;
+    background-size: 200% 100%;
+    animation: masked-animation 4s linear infinite;
 }
 
 @keyframes masked-animation {
@@ -73,28 +77,274 @@ html.hidden-mode canvas {
     cursor: crosshair;
 }
 
-.buttons {
-    display: none;
-    position: fixed;
-    right: 40px;
-    top: 12%;
-    margin: auto;
-    text-align: center;
-    z-index: 10;
-}
 
-html.hidden-mode buttons {
+
+html.hidden-mode .setting-floater {
     display: block;
 }
 
-button {
+.setting-floater{
+    position: fixed;
     background: #FFCD00;
-    border: 0;
     color: #B57700;
-    padding: 15px;
-    min-width: 60px;
-    font-size: 18px;
-    font-weight: bold;
-    margin: 10px;
+    top: 10%;
+    width: 320px;
+    padding: 0 6px;
+    z-index: 10;
+    display: none;
+    transition:all 200ms;
+    right: -320px;
+}
+
+.setting-floater.shrink{
+    right: 0;
+}
+
+.setting-floater.shrink .shrink-btn::before{
+    content: "收缩"
+}
+
+.setting-floater-title{
+    padding: 6px 0;
+}
+.setting-floater-content{
+    font-size: 14px;
+}
+.setting-floater-content>div{
+    border-top: 1px solid;
+    padding: 6px 0;
+}
+.clearfix:after{
+    content:".";/*加一段内容*/
+    display:block;/*让生成的元素以块级元素显示，占满剩余空间*/
+    height:0;/*避免生成的内容破坏原有布局高度*/
+    clear:both;/*清除浮动*/
+    visibility:hidden;/*让生成的内容不可见*/
+}
+.clearfix{zoom:1;/*为IE6，7的兼容性设置*/}
+.setting-floater-content-header{
+    font-size: 16px;
+    font-weight: 600;
     cursor: pointer;
+    user-select: none;
+}
+.setting-floater-content .label{
+    float: left;
+    width: 32%;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+.setting-floater-content .content{
+    float: left;
+    width: 58%;
+    padding: 0 12px 0 0;
+}
+.setting-floater-content .value{
+    float: left;
+    width: 10%;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 4px;
+}
+
+.setting-floater-content-title{
+    border-top: 1px solid;
+}
+
+.shrink-btn {
+    position: absolute;
+    left: -27px;
+    top: 29px;
+    width: 27px;
+    line-height: 28px;
+    border-right: 1px solid;
+    height: 46px;
+    text-align: center;
+    background: inherit;
+    border-radius: 6px 0 0 6px;
+    font-weight: bold;
+    writing-mode: vertical-lr;
+    font-size: 17px;
+    user-select: none;
+    cursor: pointer;
+}
+.shrink-btn::before{
+    content: "展开"
+}
+
+.noUi-horizontal.slider-xs {
+    height: 14px;
+    margin-top: 7px;
+}
+
+.noUi-horizontal.slider-xs .noUi-handle {
+    height: 24px;
+    width: 26px
+}
+
+.noUi-horizontal.slider-xs .noUi-handle:before {
+    left: 10px;
+    top: 4px
+}
+
+.noUi-horizontal.slider-xs .noUi-handle:after {
+    left: 13px;
+    top: 4px
+}
+
+.checkbox{
+    margin-top: 3px;
+}
+
+input[type=checkbox],input[type=radio] {
+    opacity: 0;
+    position: absolute;
+    left: -9999px;
+    z-index: 12;
+    width: 18px;
+    height: 18px;
+    cursor: pointer
+}
+
+input[type=checkbox].inverted:checked~.text:before,input[type=radio].inverted:checked~.text:before {
+    background-color: #5db2ff;
+    border-color: #5db2ff;
+    color: #fff
+}
+
+
+input[type=checkbox]:checked~.text:before,input[type=radio]:checked~.text:before {
+    display: inline-block;
+    content: "√";
+    background-color: #f5f8fc;
+    box-shadow: 0 1px 2px rgba(0,0,0,.05),inset 0 -15px 10px -12px rgba(0,0,0,.05),inset 15px 10px -12px rgba(255,255,255,.1);
+    border-color: #999
+}
+
+input[type=checkbox]:hover~.text :before,input[type=radio]:hover~.text :before {
+    border-color: #5db2ff
+}
+
+input[type=checkbox]:active~.text :before,input[type=radio]:active~.text :before {
+    box-shadow: 0 1px 2px rgba(0,0,0,.05),inset 0 1px 3px rgba(0,0,0,.1)
+}
+
+input[type=checkbox]:disabled~.text,input[type=radio]:disabled~.text,input[type=checkbox][disabled]~.text,input[type=radio][disabled]~.text,input[type=checkbox].disabled~.text,input[type=radio].disabled~.text {
+    color: rgba(0,0,0,.2)
+}
+
+input[type=checkbox]:disabled~.text:before,input[type=radio]:disabled~.text:before,input[type=checkbox][disabled]~.text:before,input[type=radio][disabled]~.text:before,input[type=checkbox].disabled~.text:before,input[type=radio].disabled~.text:before {
+    background-color: #f5f5f5 !important;
+    border-color: #e5e5e5 !important;
+    box-shadow: none !important;
+    color: #e5e5e5
+}
+
+input[type=checkbox]~.text,input[type=radio]~.text {
+    position: relative;
+    z-index: 11;
+    display: inline-block;
+    margin: 0;
+    line-height: 20px;
+    min-height: 18px;
+    min-width: 18px;
+    font-weight: normal
+}
+
+input[type=checkbox]~.text:before,input[type=radio]~.text:before {
+    font-weight: bold;
+    font-size: 18px;
+    content: " ";
+    color: #5db2ff;
+    background-color: #fafafa;
+    border: 1px solid #5db2ff;
+    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    border-radius: 0;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    text-indent: -4px;
+    height: 18px;
+    line-height: 21px;
+    min-width: 18px;
+    margin-right: 5px;
+    margin-bottom: 2px;
+    transition: all .3s ease
+}
+
+input[type=checkbox]~.text:hover:before,input[type=radio]~.text:hover:before {
+    border-color: #5db2ff
+}
+
+input[type=checkbox]~.text:active:before,input[type=radio]~.text:active:before {
+    box-shadow: 0 1px 2px rgba(0,0,0,.05),inset 0 1px 3px rgba(0,0,0,.1)
+}
+.ellipsis-text{
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+
+select {
+    display: block;
+    height: 30px;
+    line-height: 1.42857143;
+    background-image: none;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    font-size: 14px;
+    color: #858585;
+    background-color: #fbfbfb;
+    border: 1px solid #d5d5d5;
+    padding: 6px 6px;
+}
+
+textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"] {
+    border-radius: 4px;
+    background-clip: padding-box !important;
+    color: #858585;
+    font-family: inherit; 
+    transition: box-shadow .45s,border-color .45s ease-in-out;
+    box-shadow: none;
+    font-size: 13px;
+    background-color: #fbfbfb;
+    border: 1px solid #d5d5d5;
+    padding: 6px;
+    line-height: 1.42857143;
+    height: 30px;
+}
+
+.btn {
+    cursor: pointer;
+    vertical-align: middle;
+    margin: 0;
+    position: relative;
+    display: inline-block;
+    color: #fff;
+    box-shadow: 0 1px 0 rgba(0,0,0,.05);
+    transition: all .15s ease;
+    border-radius: 2px;
+    background-clip: padding-box;
+    font-size: 13px;
+    background-color: #5db2ff !important;
+    border-color: #5db2ff;
+    padding: 6px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    touch-action: manipulation;
+    user-select: none;
+    border: 1px solid transparent;
+}
+.btn:focus {
+    background-color: #5db2ff !important;
+    border-color: #5db2ff;
+    color: #fff;
+}
+.btn:active, .btn.active {
+    background-image: none;
+    outline: 0;
+    box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
 }

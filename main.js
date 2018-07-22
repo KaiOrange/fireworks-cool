@@ -13,24 +13,27 @@ const url = require('url')
 const isDev = process.env.NODE_ENV === "development";
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let mainWindow
+let mainWindow;
 
 function createWindow () {
   // Create the browser window.
-  mainWindow = new BrowserWindow({ fullscreen: true, transparent: true, frame: false, alwaysOnTop :true})
+  if(isDev){
+    mainWindow = new BrowserWindow({ fullscreen: true, transparent: true, frame: false})
+    // Open the DevTools.
+    mainWindow.webContents.openDevTools()
+  } else {
+    mainWindow = new BrowserWindow({ fullscreen: true, transparent: true, frame: false, alwaysOnTop :true})
+    mainWindow.setIgnoreMouseEvents(true);
+  }
+  mainWindow.focus()
+  mainWindow.setSkipTaskbar(true);
 
-  mainWindow.setIgnoreMouseEvents(true);
   // and load the index.html of the app.
   mainWindow.loadURL(url.format({
     pathname: path.join(__dirname, './src/index.html'),
     protocol: 'file:',
     slashes: true
   }))
-
-  // Open the DevTools.
-  if(isDev){
-    mainWindow.webContents.openDevTools()
-  }
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
