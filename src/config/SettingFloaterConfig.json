@@ -1,0 +1,27 @@
+{
+    "Fireworks":{
+        "fworkSpeed":{"min":1,"max":10,"step":1},
+        "fworkAccel":{"min":0,"max":50,"step":1},
+        "fworkNumber":{"min":1,"max":15,"step":1},
+        "showShockwave":{"type":"checkbox"},
+        "showTarget":{"type":"checkbox"}
+    },
+    "Particles":{
+        "partCount":{"min":0,"max":500,"step":1},
+        "partSpeed":{"min":1,"max":100,"step":1},
+        "partSpeedVariance":{"min":0,"max":50,"step":1},
+        "partWind":{"min":0,"max":100,"step":1},
+        "partFriction":{"min":0,"max":50,"step":1},
+        "partGravity":{"min":-20,"max":20,"step":1},
+        "flickerDensity":{"min":0,"max":50,"step":1}
+    },
+    "Color":{
+        "hueMin":{"min":0,"max":360,"step":1},
+        "hueMax":{"min":1,"max":360,"step":1},
+        "hueVariance":{"min":0,"max":180,"step":1}
+    },
+    "Other":{
+        "lineWidth":{"min":1,"max":20,"step":1},
+        "clearAlpha":{"min":0,"max":100,"step":1}
+    }
+}

@@ -55,6 +55,7 @@ var Fireworks = function(){
 		self.lineWidth = 1;
 		self.bindEvents();			
 		self.canvasLoop();
+		self.fworkNumber = 10;
 		
 		self.canvas.onselectstart = function() {
 			return false;
@@ -329,14 +330,12 @@ var Fireworks = function(){
 		
 		$(self.canvas).on('mousedown', function(e){
 			if (Utils.isHiddenMode()) {
-				var randLaunch = rand(0, 5);
 				self.mx = e.pageX - self.canvasContainer.offset().left;
 				self.my = e.pageY - self.canvasContainer.offset().top;
 				self.currentHue = rand(self.hueMin, self.hueMax);
 				self.createFireworks(self.cw / 2, self.ch, self.mx, self.my);
 
 				$(self.canvas).on('mousemove.fireworks', function (e) {
-					var randLaunch = rand(0, 5);
 					self.mx = e.pageX - self.canvasContainer.offset().left;
 					self.my = e.pageY - self.canvasContainer.offset().top;
 					self.currentHue = rand(self.hueMin, self.hueMax);
@@ -388,13 +387,13 @@ var Fireworks = function(){
   
   
   self.autoFires = function () {
-	  var initialLaunchCount = 10;
-	  while (initialLaunchCount--) {
+	  var fworkNumber = self.fworkNumber;
+	  while (fworkNumber--) {
 		  setTimeout(function () {
 			var firework = new Firework(self.cw / 2, self.ch, rand(50, self.cw - 50), rand(50, self.ch / 2) - 50);
 			firework.hue = rand(self.hueMin, self.hueMax);
 			self.fireworks.push(firework);
-		  }, initialLaunchCount * 250);
+		  }, fworkNumber * 250);
 	  }
   };
 	

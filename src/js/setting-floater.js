@@ -1,32 +1,7 @@
 const noUiSlider = require('nouislider');
+const SettingFloaterConfig = require('../config/SettingFloaterConfig.json');
 
 var SettingFloater = (function (){
-    var SettingFloaterConfig = {
-        "Fireworks":{
-            "fworkSpeed":{"min":1,"max":10,"step":1},
-            "fworkAccel":{"min":0,"max":50,"step":1},
-            "showShockwave":{"type":"checkbox"},
-            "showTarget":{"type":"checkbox"}
-        },
-        "Particles":{
-            "partCount":{"min":0,"max":500,"step":1},
-            "partSpeed":{"min":1,"max":100,"step":1},
-            "partSpeedVariance":{"min":0,"max":50,"step":1},
-            "partWind":{"min":0,"max":100,"step":1},
-            "partFriction":{"min":0,"max":50,"step":1},
-            "partGravity":{"min":-20,"max":20,"step":1},
-            "flickerDensity":{"min":0,"max":50,"step":1}
-        },
-        "Color":{
-            "hueMin":{"min":0,"max":360,"step":1},
-            "hueMax":{"min":1,"max":360,"step":1},
-            "hueVariance":{"min":0,"max":180,"step":1}
-        },
-        "Other":{
-            "lineWidth":{"min":1,"max":20,"step":1},
-            "clearAlpha":{"min":0,"max":100,"step":1}
-        }
-    };
     function init(allConfig,CurrentConfig,eventCallBack){
         var CurrentConfigSetting = CurrentConfig.settings;
         var settingFloaterContent = $('.setting-floater-content');
@@ -172,9 +147,21 @@ var SettingFloater = (function (){
         });
 
         var closeDivStr = `<div>
-            <button class="btn" type="button" style="width: 100%;" id="closeBtn">关闭</button>
+            <button class="btn" type="button" style="width: 150px;margin-right:4px" id="clearBtn">清屏</button>
+            <button class="btn" type="button" style="width: 150px;" id="closeBtn">退出</button>
         </div>`;
         settingFloaterContent.append(closeDivStr);
+
+        $("#clearBtn").click(function (){
+            if (!!eventCallBack) {
+                eventCallBack({
+                    key:"",
+                    value:"",
+                    type:"clear"
+                })
+            }
+        });
+
         $("#closeBtn").click(function (){
             if (!!eventCallBack) {
                 eventCallBack({
