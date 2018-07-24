@@ -1,18 +1,15 @@
 # fireworks-cool
-#### 使用electron的一个烟花小程序。
+#### 使用electron构建的一个放烟花的小玩意。
 
 
 ## 使用 🐌
-1. 确保你的系统上拥有`NodeJS`和`electron`，如果没有`electron`请执行下面的命令安装该依赖包（这个过程可能会比较耗时）.
-```sh
-npm install -g electron
-```
+1. 首先需要确保你的系统上拥有`NodeJS`并且可以运行`npm`命令。
 
-2. 下载该全局包.
+2. 下载全局包（如果没有安装过特定版本的`electron`的话，这个过程可能会比较耗时，国内建议使用淘宝的镜像源）。
 ```sh
 npm install -g fireworks-cool
 ```
-3. 运行程序：成功安装全局包后可以输入下面命令运行程序，windows操作系统使用`win+R`快捷键后输入`CMD`打开DOS界面运行.
+1. 运行程序。
 ```sh
 fireworks-cool
 ```
