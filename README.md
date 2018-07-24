@@ -9,7 +9,7 @@
 ```sh
 npm install -g fireworks-cool
 ```
-1. 运行程序。
+3. 运行程序。
 ```sh
 fireworks-cool
 ```
