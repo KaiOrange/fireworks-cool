@@ -86,7 +86,7 @@ var SettingFloater = (function (){
                 var option = SettingFloaterConfig[item][n]
                 if (option.type ==="checkbox") {
                     var $checkbox = $("#"+n).find("input[type=checkbox]");
-                    $checkbox.prop("checked",true);
+                    $checkbox.prop("checked",CurrentConfigSetting[n]);
                     $checkbox.change(function (){
                         if (!!eventCallBack) {
                             eventCallBack({

@@ -54,8 +54,8 @@ ipc.on('get-text-reply', function (event, arg) {
 	var preset = "Default";
 	var currentObj = GuiPresets[preset];
 	if (!!arg && !!arg.settings && Object.keys(arg.settings).length !== 0) {
-		currentObj = arg.settings;
-		preset = arg.preset;
+		currentObj = Object.assign(currentObj,arg.settings||{});
+		preset = arg.preset || preset;
 	} else {
 		ipc.send('setting-change-all',{settings:currentObj,preset:"Default"});
 	}
