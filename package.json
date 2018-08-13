@@ -1,6 +1,6 @@
 {
   "name": "fireworks-cool",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "使用electron构建的一个放烟花的小玩意。",
   "main": "main.js",
   "bin": {

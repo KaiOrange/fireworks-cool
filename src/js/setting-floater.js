@@ -75,7 +75,7 @@ var SettingFloater = (function (){
                 }
             });
             var str = `<div>
-                <div class="setting-floater-content-header" >${item}</div>
+                <div class="setting-floater-content-header" >${item}<span class="triangle_right"></span></div>
                 <div class="setting-floater-content-body">
                     ${innerStr}
                 </div>
@@ -125,7 +125,9 @@ var SettingFloater = (function (){
             });
         });
         $(".setting-floater-content-header").click(function (){
-            $(this).next().slideToggle("fast");
+            var $this = $(this);
+            $this.next().slideToggle("fast");
+            $this.children(".triangle_right").toggleClass("rotate90deg");
         });
 
         var textDivStr = `<div>

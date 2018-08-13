@@ -87,7 +87,7 @@ html.hidden-mode .setting-floater {
     position: fixed;
     background: #FFCD00;
     color: #B57700;
-    top: 10%;
+    top: 4%;
     width: 320px;
     padding: 0 6px;
     z-index: 10;
@@ -127,6 +127,37 @@ html.hidden-mode .setting-floater {
     font-weight: 600;
     cursor: pointer;
     user-select: none;
+    padding-right: 4px;
+}
+.setting-floater-content-header .triangle_right{
+    float: right;
+}
+.triangle_right{
+    width:0;
+    height:0;
+    border-width:8px 0 8px 8px;
+    border-style:solid;
+    border-color:transparent transparent transparent #B57700;/*透明 透明 透明 灰*/
+    position:relative;
+    transition: transform 0.2s ease-in-out;
+}
+.triangle_right::after{
+    content: "";
+    display:block;
+    width:0;
+    height:0;
+    border-width:4px 0 4px 4px;;
+    border-style:solid;
+    border-color:transparent transparent transparent #FFCD00;/*透明 透明 透明 黄*/
+    position:absolute;
+    top: -4px;
+    left: -8px;
+}
+.rotate90deg{
+    transform: rotate(90deg);
+}
+.setting-floater-content-body{
+    display: none;
 }
 .setting-floater-content .label{
     float: left;
