@@ -1,3 +1,6 @@
 node_modules
 .vscode
 build
+/src/dist/bundle.js
+/npm/path.txt
+/npm/*.zip

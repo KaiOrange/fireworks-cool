@@ -3,7 +3,7 @@
 // All of the Node.js APIs are available in this process.
 
 const { ipcMain } = require("electron");
-const configOp = require("./lib/configOp.js");
+const configOp = require("./npm/lib/configOp.js");
 
 
 ipcMain.on('get-text-main', function (event, arg) {

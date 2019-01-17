@@ -1,8 +1,7 @@
 node_modules
 .vscode
-.npmignore
+.gitignore
 .git
 build
 webpack.config.js
-src/css/
-src/js/
+path.txt

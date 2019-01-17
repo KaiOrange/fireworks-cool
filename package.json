@@ -1,29 +1,22 @@
 {
   "name": "fireworks-cool",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "使用electron构建的一个放烟花的小玩意。",
   "main": "main.js",
-  "bin": {
-    "fireworks-cool": "index.js"
-  },
   "engines": {
     "node": ">=4.0"
   },
   "scripts": {
-    "start": "cross-env NODE_ENV=production node index",
-    "text": "node index --text=HelloWorld",
-    "clear": "node index --clear",
-    "delete": "node index --delete=1",
-    "list": "node index --list",
-
-    "dev": "npm run build && cross-env NODE_ENV=development node index",
+    "dev": "npm run build && cross-env --NODE_ENV=development electron main.js",
+    "start": "npm run build && electron main.js",
     "build": "webpack",
-    "buildWin": "npm run build && rimraf ./build && electron-packager . fireworks-cool --platform=win32 --arch=x64 --out=./build --asar --ignore=\"(.vscode|.gitignore|.npmignore|README.md|node_modules)\""
+    "buildWin": "npm run build && rimraf ./build && electron-packager . fireworks-cool --platform=win32 --arch=x86 --out=./build --asar --ignore=\"(.vscode|.gitignore|.npmignore|README.md|node_modules|build)\""
   },
   "keywords": [
+    "fireworks-cool",
     "Electron",
     "fireworks",
-    "demo"
+    "desktop"
   ],
   "author": "KaiOrange",
   "license": "MIT",
@@ -40,7 +33,6 @@
     "electron": "^1.8.3",
     "jquery": "^3.3.1",
     "mousetrap": "^1.6.1",
-    "nouislider": "^11.1.0",
-    "yargs": "^11.0.0"
+    "nouislider": "^11.1.0"
   }
 }

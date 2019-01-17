@@ -92,18 +92,27 @@ if (!!argv.u || argv.u === 0) {//使用
 } 
 
 if (isRun) {
-    //使用子进程调用electron
-    var electron = require('./node_modules/electron')
-    var proc = require('child_process')
     var fs = require('fs')
-    var pathFile = path.join(__dirname, "main.js")
-    var execArgs = [pathFile];
+    var pathFile = path.join(__dirname, 'path.txt')
+    var appPath = null;
+    if (fs.existsSync(pathFile)) {
+        appPath = path.join(__dirname, fs.readFileSync(pathFile, 'utf-8'))
+    } else {
+        throw new Error('Fireworks-cool failed to install correctly, please delete node_modules/fireworks-cool and try installing again')
+    }
+
+    //使用子进程调用electron
+    var proc = require('child_process')
+    var execArgs = ["--NODE_ENV="+process.env.NODE_ENV];
+    // var electron = require('./node_modules/electron')
+    // var pathFile = path.join(__dirname, "main.js")
+    // var execArgs = [pathFile];
 
     if (process.env.NODE_ENV === "development") {//开发模式的时候
         execArgs.push("--debug=5858");
     }
 
-    var child = proc.spawn(electron, execArgs, { stdio: 'inherit' })
+    var child = proc.spawn(appPath, execArgs, { stdio: 'inherit' })
     child.on('close', function (code) {
         process.exit(code)
     })

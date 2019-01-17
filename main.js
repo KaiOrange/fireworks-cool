@@ -1,6 +1,6 @@
 const electron = require('electron')
 // Module to control application life.
-const {app,session,ipcMain,BrowserWindow} = electron;
+const {app,session,ipcMain,BrowserWindow,systemPreferences} = electron;
 // const session = electron.session;
 // const ipc = electron.ipcMain;
 // Module to create native browser window.
@@ -17,15 +17,26 @@ let mainWindow;
 
 function createWindow () {
   // Create the browser window.
+  let browserOptions = {fullscreen: true, transparent: true, frame: false,show: false,resizable:false,titleBarStyle: 'hidden'};
+  if(!systemPreferences.isAeroGlassEnabled()){//如果没有DWM 那么只能设置非透明的了
+	  browserOptions.transparent = false;
+	  console.warn("您的电脑没有开启DWM，程序的背景无法设置为透明，请开启后再试试。");
+  }
   if(isDev){
-    mainWindow = new BrowserWindow({ fullscreen: true, transparent: true, frame: false})
+    mainWindow = new BrowserWindow(browserOptions);
     // Open the DevTools.
     mainWindow.webContents.openDevTools()
   } else {
-    mainWindow = new BrowserWindow({ fullscreen: true, transparent: true, frame: false, alwaysOnTop :true})
+	browserOptions.alwaysOnTop = true;
+    mainWindow = new BrowserWindow(browserOptions);
     mainWindow.setIgnoreMouseEvents(true);
   }
-  mainWindow.focus()
+  
+  mainWindow.once('ready-to-show', () => {
+		mainWindow.show()
+  })
+  
+  mainWindow.focus();
   mainWindow.setSkipTaskbar(true);
 
   // and load the index.html of the app.
