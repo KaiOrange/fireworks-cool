@@ -94,6 +94,4 @@ var bindMousetrapEvent = function (){
 	ipc.send('goto-hidden-mode');
 }
 
-Mousetrap.bind('w w s s a a d d j k j k', bindMousetrapEvent);
-Mousetrap.bind('up up down down left left right right 1 2 1 2', bindMousetrapEvent);
-Mousetrap.bind('up up down down left left right right b a b a', bindMousetrapEvent);
+Mousetrap.bind('c o o l', bindMousetrapEvent);

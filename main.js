@@ -17,17 +17,21 @@ let mainWindow;
 
 function createWindow () {
   // Create the browser window.
-  let browserOptions = {fullscreen: true, transparent: true, frame: false,show: false,resizable:false,titleBarStyle: 'hidden'};
-  if(!systemPreferences.isAeroGlassEnabled()){//如果没有DWM 那么只能设置非透明的了
-	  browserOptions.transparent = false;
-	  console.warn("您的电脑没有开启DWM，程序的背景无法设置为透明，请开启后再试试。");
-  }
+  let browserOptions = {
+    fullscreen: true,
+    simpleFullscreen:true, 
+    transparent: true, 
+    frame: false,
+    show: false,
+    resizable:false,
+    titleBarStyle: 'hidden',
+  };
   if(isDev){
     mainWindow = new BrowserWindow(browserOptions);
     // Open the DevTools.
     mainWindow.webContents.openDevTools()
   } else {
-	browserOptions.alwaysOnTop = true;
+	  browserOptions.alwaysOnTop = true;
     mainWindow = new BrowserWindow(browserOptions);
     mainWindow.setIgnoreMouseEvents(true);
   }
@@ -81,7 +85,9 @@ app.on('activate', function () {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 ipcMain.on('app-quit', function (event, arg) {
-  app.quit();
+  // app.quit();
+  // 暴力退出
+  app.exit()
 })
 ipcMain.on('goto-hidden-mode', function (event, arg) {
   if (!!mainWindow) {

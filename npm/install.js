@@ -49,14 +49,14 @@ function getPlatformPath () {
     var platform = os.platform()
 
     switch (platform) {
-        // case 'darwin':
-        //   return 'Fireworks-cool.app/Contents/MacOS/Fireworks-cool'
+        case 'darwin':
+          return 'fireworks-cool.app/Contents/MacOS/fireworks-cool'
         // case 'freebsd':
         // case 'linux':
         //   return 'fireworks-cool'
         case 'win32':
         return 'fireworks-cool.exe'
         default:
-        throw new Error('Fireworks-cool builds are not available on platform: ' + platform)
+        throw new Error('fireworks-cool 不支持你当前的系统: ' + platform)
     }
 }
