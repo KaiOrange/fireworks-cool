@@ -3,6 +3,9 @@
   "version": "0.2.0",
   "installVersion": "0.2.0",
   "description": "使用electron构建的一个放烟花的小玩意。",
+  "author": "KaiOrange",
+  "license": "MIT",
+  "repository": "git@github.com:KaiOrange/fireworks-cool.git",
   "bin": {
     "fireworks-cool": "index.js"
   },
@@ -24,8 +27,6 @@
     "fireworks",
     "desktop"
   ],
-  "author": "KaiOrange",
-  "license": "MIT",
   "devDependencies": {
     "cross-env": "^5.1.3"
   },
