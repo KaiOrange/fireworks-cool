@@ -21,8 +21,13 @@ class Downloader {
     getUrl(){
         return `${this.baseUrl}/${this.version}/${this.getFileName()}`;
     }
+
+    getPureFileName(){
+        return `${this.softName}-${this.platform}-${this.arch}`;
+    }
+
     getFileName(){
-        return `${this.softName}-${this.platform}-${this.arch}.zip`;
+        return `${this.getPureFileName()}.zip`;
     }
 
     downloadFile (cb, onSuccess) {

@@ -33,11 +33,14 @@ function extractFile (err, zipPath) {
     if (err) return onerror(err)
     extract(zipPath, { dir: path.join(__dirname, buildDir) }, function (err) {
         if (err) return onerror(err)
-        fs.writeFile(path.join(__dirname, 'path.txt'), path.join(buildDir,platformPath), function (err) {
-            if (err) return onerror(err)
-            console.log("O(∩_∩)O 成功~\n现在输入'fireworks-cool'试试?")
-            fs.unlinkSync(zipPath);//删除文件
-        })
+        fs.writeFile(path.join(__dirname, 'path.txt'), 
+            path.join(buildDir,downloader.getPureFileName(),platformPath),
+            function (err) {
+                if (err) return onerror(err)
+                console.log("O(∩_∩)O 成功~\n现在输入'fireworks-cool'试试?")
+                fs.unlinkSync(zipPath);//删除文件
+            }
+        )
     })
 }
 
