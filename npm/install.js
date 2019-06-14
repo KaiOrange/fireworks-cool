@@ -34,7 +34,7 @@ function extractFile (err, zipPath) {
     extract(zipPath, { dir: path.join(__dirname, buildDir) }, function (err) {
         if (err) return onerror(err)
         fs.writeFile(path.join(__dirname, 'path.txt'), 
-            path.join(buildDir,downloader.getPureFileName(),platformPath),
+            path.join(buildDir,`fireworks-cool-${os.platform()}-${os.arch()}`,platformPath),
             function (err) {
                 if (err) return onerror(err)
                 console.log("O(∩_∩)O 成功~\n现在输入'fireworks-cool'试试?")
