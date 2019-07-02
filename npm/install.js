@@ -7,22 +7,13 @@ const extract = require('extract-zip')
 const installVersion = require('./package.json').installVersion;
 const buildDir = "build";
 var platformPath = getPlatformPath()
-// var installedVersion = null
-// try {
-//   installedVersion = fs.readFileSync(path.join(__dirname, buildDir, 'version'), 'utf-8').replace(/^v/, '')
-// } catch (ignored) {
-// }
-
-// var electronPath = path.join(__dirname, buildDir, platformPath)
-
-// if (installedVersion === installVersion && fs.existsSync(electronPath)) {
-//   process.exit(0)
-// }
 
 downloader({
-    baseUrl:"https://github.com/KaiOrange/fireworks-cool/releases/download",
+    // baseUrl:"https://github.com/KaiOrange/fireworks-cool/releases/download",
+    // 由于国内github下载速度实在太慢了 所以就不使用它的服务了 这里改用ucloud存储
+    baseUrl: "http://fireworks-cool.cn-bj.ufileos.com",
     version: installVersion,
-    softName:"fireworks-cool",
+    softName: "fireworks-cool",
     platform: os.platform(),//"win32"
     arch: os.arch(),//"x64"
     buildDir:buildDir
@@ -37,7 +28,7 @@ function extractFile (err, zipPath) {
             path.join(buildDir,`fireworks-cool-${os.platform()}-${os.arch()}`,platformPath),
             function (err) {
                 if (err) return onerror(err)
-                console.log("O(∩_∩)O 成功~\n现在输入'fireworks-cool'试试?")
+                console.log("\nO(∩_∩)O 成功~\n现在输入'fireworks-cool'试试?\n\n")
                 fs.unlinkSync(zipPath);//删除文件
             }
         )

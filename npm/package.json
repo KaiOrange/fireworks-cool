@@ -1,6 +1,6 @@
 {
   "name": "fireworks-cool",
-  "version": "0.2.2",
+  "version": "0.2.4",
   "installVersion": "0.2.0",
   "description": "使用electron构建的一个放烟花的小玩意。",
   "author": "KaiOrange",

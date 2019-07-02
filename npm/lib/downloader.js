@@ -66,7 +66,7 @@ class Downloader {
     
      handleDownloadError (cb, error) {
         if (error.message.indexOf('404') === -1) return cb(error)
-        error.message = `Failed to find ${this.softName} v${this.version} for ${this.platform}-${this.arch} at ${this.url}`;
+        error.message = `Failed to find ${this.softName} ${this.version} for ${this.platform}-${this.arch} at ${this.getUrl()}`;
         return cb(error)
     }
 
