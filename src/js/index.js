@@ -139,26 +139,24 @@ var handle2CoolMode = function (){
 }
 
 var handle2FlickerMode = function (){
-  if (Utils.isFlickerMode()) {
-      return ;
-  }
-  $("html").addClass("flicker-mode");
-  ipc.send('goto-hidden-mode','flicker')
-  flickerTimer = setInterval(function (){
-      fworks.randomFire();
-  },2800);
-}
-
-Mousetrap.bind('c o o l', handle2CoolMode);
-Mousetrap.bind('f l i c k e r', function (){
-    // 输入秘钥进入flicker模式则给出退出提示
+    if (Utils.isFlickerMode()) {
+        return ;
+    }
+    $("html").addClass("flicker-mode");
+    ipc.send('goto-hidden-mode','flicker')
+    flickerTimer = setInterval(function (){
+        fworks.randomFire();
+    },2000);
+    //进入Flicker模式 给出退出提示
     $("#flicker-tip").fadeIn("fast",function (){
         setTimeout(() => {
             $("#flicker-tip").fadeOut("fast");
         }, 6000);
     })
-    handle2FlickerMode();
-});
-Mousetrap.bind('ctrl+esc', function (){
+}
+
+Mousetrap.bind('c o o l', handle2CoolMode);
+Mousetrap.bind('f l i c k e r', handle2FlickerMode);
+Mousetrap.bind('shift+esc', function (){
     closeApp();
 });

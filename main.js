@@ -93,7 +93,7 @@ ipcMain.on('app-quit', function (event, arg) {
 
 ipcMain.on('goto-hidden-mode', function (event, arg) {
   if (arg === "flicker") {
-    return;
+    console.log("进入Flicker模式，当前命令行输入Ctrl + C退出。");
   } else {
     if (!!mainWindow) {
       mainWindow.setIgnoreMouseEvents(false);

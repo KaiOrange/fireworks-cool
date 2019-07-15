@@ -132,7 +132,6 @@ if (isRun) {
     } else if(!!argv.flicker){
       execArgs.push("--mode=flicker");
       process.env.mode = "flicker"
-      console.log("\n进入flicker模式，当前命令行输入Ctrl + C退出。");
     }
 
     var child = proc.spawn(appPath, execArgs, { stdio: 'inherit' })
