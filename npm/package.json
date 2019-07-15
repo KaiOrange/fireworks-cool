@@ -1,6 +1,6 @@
 {
   "name": "fireworks-cool",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "installVersion": "0.3.0",
   "description": "使用electron构建的一个放烟花的小玩意。",
   "author": "KaiOrange",
@@ -14,8 +14,8 @@
   },
   "scripts": {
     "postinstall": "node install.js",
-    "dev": "cross-env NODE_ENV=development node index",
-    "start": "cross-env NODE_ENV=production node index",
+    "dev": "cross-env --NODE_ENV=development node index",
+    "start": "cross-env --NODE_ENV=production node index",
     "text": "node index --text=HelloWorld",
     "clear": "node index --clear",
     "delete": "node index --delete=1",

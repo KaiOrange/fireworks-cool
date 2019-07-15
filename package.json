@@ -11,11 +11,11 @@
   },
   "scripts": {
     "dev": "npm run build && cross-env --NODE_ENV=development electron main.js",
-    "start": "npm run build && electron main.js",
+    "start": "npm run build && cross-env electron main.js",
     "build": "webpack",
-    "buildWin": "electron-packager . fireworks-cool --platform=win32 --arch=x64 --out=./build --asar --ignore=\"(.vscode|.gitignore|.npmignore|README.md|node_modules|build)\"",
-    "buildWinia32": "electron-packager . fireworks-cool --platform=win32 --arch=ia32 --out=./build --asar --ignore=\"(.vscode|.gitignore|.npmignore|README.md|node_modules|build)\"",
-    "buildMac": "electron-packager . fireworks-cool --platform=darwin --arch=x64 --out=./build --asar --ignore=\"(.vscode|.gitignore|.npmignore|README.md|node_modules|build)\"",
+    "buildWin": "electron-packager . fireworks-cool --platform=win32 --arch=x64 --out=./build --asar --ignore=\"(.vscode|.gitignore|.npmignore|README.md|node_modules|build)\" --overwrite",
+    "buildWinia32": "electron-packager . fireworks-cool --platform=win32 --arch=ia32 --out=./build --asar --ignore=\"(.vscode|.gitignore|.npmignore|README.md|node_modules|build)\" --overwrite",
+    "buildMac": "electron-packager . fireworks-cool --platform=darwin --arch=x64 --out=./build --asar --ignore=\"(.vscode|.gitignore|.npmignore|README.md|node_modules|build)\" --overwrite",
     "buildAll": "npm run build && rimraf ./build && npm run buildWin && npm run buildWinia32 && npm run buildMac"
   },
   "keywords": [

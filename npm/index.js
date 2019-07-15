@@ -38,6 +38,11 @@ var argv = require('yargs')
       demand: false,
       boolean: true,
       describe: '进入随机放烟花模式（固定时间随机发一发）',
+    }).option('v', {
+      alias: 'version',
+      demand: false,
+      boolean: true,
+      describe: '版本号',
     })
     .argv;
 
@@ -121,11 +126,12 @@ if (isRun) {
     if (process.env.NODE_ENV === "development") {//开发模式的时候
         execArgs.push("--debug=5858");
     }
-
     if (!!argv.cool) {
       execArgs.push("--mode=cool");
+      process.env.mode = "cool"
     } else if(!!argv.flicker){
       execArgs.push("--mode=flicker");
+      process.env.mode = "flicker"
       console.log("\n进入flicker模式，当前命令行输入Ctrl + C退出。");
     }
 

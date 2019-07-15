@@ -147,9 +147,6 @@ var handle2FlickerMode = function (){
   flickerTimer = setInterval(function (){
       fworks.randomFire();
   },2800);
-  Mousetrap.bind('ctrl+esc', function (){
-      ipc.send('app-quit');
-  });
 }
 
 Mousetrap.bind('c o o l', handle2CoolMode);
@@ -161,4 +158,7 @@ Mousetrap.bind('f l i c k e r', function (){
         }, 6000);
     })
     handle2FlickerMode();
+});
+Mousetrap.bind('ctrl+esc', function (){
+    closeApp();
 });
