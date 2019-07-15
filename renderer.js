@@ -5,6 +5,9 @@
 const { ipcMain } = require("electron");
 const configOp = require("./npm/lib/configOp.js");
 
+ipcMain.on('get-mode-main', function (event) {
+    event.sender.send('get-mode-reply', process.env.mode)
+})
 
 ipcMain.on('get-text-main', function (event, arg) {
     configOp.readConfig((obj)=>{

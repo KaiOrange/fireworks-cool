@@ -38,6 +38,16 @@ a:hover {
 }
 
 #center-block {
+    top: 15%;
+}
+
+#flicker-tip {
+    top: 20%;
+    font-size: 20px;
+    display: none;
+}
+
+.blink-text {
     background: black;
     position: absolute;
     margin: 0 auto;
@@ -73,13 +83,13 @@ a:hover {
 
 /*隐藏模式*/
 
-html.hidden-mode canvas {
+html.cool-mode canvas {
     cursor: crosshair;
 }
 
 
 
-html.hidden-mode .setting-floater {
+html.cool-mode .setting-floater {
     display: block;
 }
 

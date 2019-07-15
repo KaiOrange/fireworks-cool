@@ -62,4 +62,16 @@
     fireworks-cool --clear
     ```
 
-> 注：输入`cool`让烟花变得更酷。
+7. 进入Cool模式（点击后烟花尾随）
+
+    ```sh
+    fireworks-cool --cool
+    ```
+
+8. 进入Flicker模式（固定时间随机发一发）
+
+    ```sh
+    fireworks-cool --flicker
+    ```
+
+> 注：启动后快速输入`cool`或者`flicker`也可以进入相应的模式。

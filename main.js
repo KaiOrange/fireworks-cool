@@ -34,6 +34,7 @@ function createWindow () {
 	  browserOptions.alwaysOnTop = true;
     mainWindow = new BrowserWindow(browserOptions);
     mainWindow.setIgnoreMouseEvents(true);
+    mainWindow.setVisibleOnAllWorkspaces(true)
   }
   
   mainWindow.once('ready-to-show', () => {
@@ -89,9 +90,15 @@ ipcMain.on('app-quit', function (event, arg) {
   // 暴力退出
   app.exit()
 })
+
 ipcMain.on('goto-hidden-mode', function (event, arg) {
-  if (!!mainWindow) {
-    mainWindow.setIgnoreMouseEvents(false);
+  if (arg === "flicker") {
+    return;
+  } else {
+    if (!!mainWindow) {
+      mainWindow.setIgnoreMouseEvents(false);
+    }
   }
 })
+
 require('./renderer.js');

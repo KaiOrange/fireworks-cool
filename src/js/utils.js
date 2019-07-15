@@ -1,7 +1,18 @@
+// 影藏模式包括Cool模式和Flicker模式
 function isHiddenMode(){
-	return $("html").hasClass("hidden-mode"); 
+	return isCoolMode() || isFlickerMode(); 
+}
+
+function isCoolMode(){
+	return $("html").hasClass("cool-mode"); 
+}
+
+function isFlickerMode(){
+	return $("html").hasClass("flicker-mode"); 
 }
 
 module.exports = {
     isHiddenMode,
+    isCoolMode,
+    isFlickerMode
 }

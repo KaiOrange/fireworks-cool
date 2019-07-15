@@ -28,6 +28,16 @@ var argv = require('yargs')
         demand: false,
         type: 'number',
         describe: '是用列表中的第几个文字',
+    }).option('cool', {
+      alias: 'cool',
+      demand: false,
+      boolean: true,
+      describe: '进入Cool模式（点击后烟花尾随）',
+    }).option('flicker', {
+      alias: 'flicker',
+      demand: false,
+      boolean: true,
+      describe: '进入随机放烟花模式（固定时间随机发一发）',
     })
     .argv;
 
@@ -112,8 +122,19 @@ if (isRun) {
         execArgs.push("--debug=5858");
     }
 
+    if (!!argv.cool) {
+      execArgs.push("--mode=cool");
+    } else if(!!argv.flicker){
+      execArgs.push("--mode=flicker");
+      console.log("\n进入flicker模式，当前命令行输入Ctrl + C退出。");
+    }
+
     var child = proc.spawn(appPath, execArgs, { stdio: 'inherit' })
     child.on('close', function (code) {
-        process.exit(code)
+        process.exit(code);
     })
+    // 使用Ctrl + C关闭主进程后 自动关闭子进程
+    process.on('SIGINT', function () {
+      child.kill('SIGHUP');
+    });
 }
