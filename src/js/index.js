@@ -12,8 +12,10 @@ const GuiPresets = require('../config/GuiPresets.json');
 const Mousetrap = require('mousetrap');
 
 let flickerTimer = null;
-var fworks = new Fireworks();
-var bodyEl = $("body");
+let flickerTime = null;
+let fworks = new Fireworks();
+let bodyEl = $("body");
+
 fworks.init(bodyEl.width(), bodyEl.height());
 
 // 绑定事件
@@ -79,7 +81,8 @@ ipc.on('get-text-reply', function (event, arg) {
 	let text = "";
 	if (!!arg.texts && arg.texts.length > 0) {
 		text = arg.texts[0];
-	}
+  }
+  flickerTime = arg.flickerTime;
 	setTimeout(function () {
 		$("#center-block").text(text).fadeIn("fast");
 		setTimeout(function () {
@@ -146,7 +149,7 @@ var handle2FlickerMode = function (){
     ipc.send('goto-hidden-mode','flicker')
     flickerTimer = setInterval(function (){
         fworks.randomFire();
-    },2000);
+    },flickerTime || 2000);
     //进入Flicker模式 给出退出提示
     $("#flicker-tip").fadeIn("fast",function (){
         setTimeout(() => {

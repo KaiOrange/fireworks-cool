@@ -38,15 +38,23 @@ function writeConfig(data){
 }
 
 function createFileIfNotExists(){
-    if (fs.exists(basePath)) {
+    if (fs.existsSync(basePath)) {
         fs.createWriteStream(basePath);
     }
 }
 
-
+function mergeWriteIfVersionLow(){
+    readConfig(function (obj){
+        if (obj.version < defaultObj.version) {
+            let newObj = Object.assign({},obj,defaultObj);
+            writeConfig(newObj);
+        }
+    });
+}
 
 module.exports={
     readConfig,
     writeConfig,
-    createFileIfNotExists
+    createFileIfNotExists,
+    mergeWriteIfVersionLow
 }

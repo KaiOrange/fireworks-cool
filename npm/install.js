@@ -7,6 +7,7 @@ const extract = require('extract-zip')
 const installVersion = require('./package.json').installVersion;
 const buildDir = "build";
 var platformPath = getPlatformPath()
+var configOp = require("./lib/configOp.js");
 
 downloader({
     // baseUrl:"https://github.com/KaiOrange/fireworks-cool/releases/download",
@@ -30,6 +31,7 @@ function extractFile (err, zipPath) {
                 if (err) return onerror(err)
                 console.log("\nO(∩_∩)O 成功~\n现在输入'fireworks-cool'试试?\n\n")
                 fs.unlinkSync(zipPath);//删除文件
+                configOp.mergeWriteIfVersionLow();
             }
         )
     })
