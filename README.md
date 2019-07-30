@@ -31,7 +31,7 @@
     假如我们输入文本HelloWorld如下（目前并不支持特殊字符），待提示设置成功后运行程序
 
     ```sh
-    fireworks-cool --test=HelloWorld
+    fireworks-cool --text=HelloWorld
     ```
 
 3. 查看文本列表
