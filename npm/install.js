@@ -9,6 +9,7 @@ const buildDir = "build";
 var platformPath = getPlatformPath()
 var configOp = require("./lib/configOp.js");
 
+console.log("烟花正在安装中，马上给你点着...");
 downloader({
     // baseUrl:"https://github.com/KaiOrange/fireworks-cool/releases/download",
     // 由于国内github下载速度实在太慢了 所以就不使用它的服务了 这里改用ucloud存储
@@ -29,9 +30,11 @@ function extractFile (err, zipPath) {
             path.join(buildDir,`fireworks-cool-${os.platform()}-${os.arch()}`,platformPath),
             function (err) {
                 if (err) return onerror(err)
-                console.log("\nO(∩_∩)O 成功~\n现在输入'fireworks-cool'试试?\n\n")
                 fs.unlinkSync(zipPath);//删除文件
                 configOp.mergeWriteIfVersionLow();
+                // 安装完了 来一发
+                console.log("\n~(≧▽≦)/~点火 发射！！！\n\n...\n\nO(∩_∩)O ~成功啦\n现在输入'fireworks-cool'试一试?\n");
+                require("./index");
             }
         )
     })
